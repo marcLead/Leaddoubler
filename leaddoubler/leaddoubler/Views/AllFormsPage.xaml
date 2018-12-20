@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lcl="clr-namespace:leaddoubler.CustomControls;assembly=leaddoubler"
+             BackgroundColor="#F0F6F2"
+             Title="Forms"
+             x:Class="leaddoubler.Views.AllFormsPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="0" >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+			<Image Source="add.png" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Margin="5">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                          NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+            <ListView ItemsSource="{Binding Forms}" Grid.Row="1" ItemTapped="ListView_ItemTapped" HasUnevenRows="True" SeparatorVisibility="None" BackgroundColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="1" BackgroundColor="#d7e0e4" CornerRadius="5" Margin="3" HasShadow="False">
+                            <Frame Padding="0" BackgroundColor="White" CornerRadius="5" Margin="0" HasShadow="False">
+                                <Label Margin="10" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Fill" TextColor="#555555" Text="{Binding Name}"></Label>
+                            </Frame>
+                            </Frame>
+                        </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <!--Button x:Name="btnAdd"
+                    Text="Add"
+                    BackgroundColor="#68A179"
+                    IsEnabled="True"
+                    TextColor="White"
+                    Command="{Binding AddCommand}" 
+                    Clicked="Button_Clicked"
+                    Grid.Row="0" 
+                    VerticalOptions="End"></>-->
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

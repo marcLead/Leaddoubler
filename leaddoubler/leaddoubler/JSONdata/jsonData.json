@@ -1,0 +1,134 @@
+{
+  "requestTime": "Fri Sep 15 15:38:58 CEST 2017",
+  "inputFields": [
+    {
+      "prefix": "fa-user",
+      "index": 0,
+      "maxChars": 25,
+      "label": "What is your email?",
+      "placeholder": "Enter your email",
+      "type": "text",
+      "logicId": "email",
+      "required": "true",
+      "validation": "email",
+      "minChars": 4
+    },
+    {
+      "minValue": 10000,
+      "defaultValue": 50000,
+      "maxValue": 100000,
+      "index": 1,
+      "label": "Enter your budget",
+      "placeholder": "E.g. 50000",
+      "type": "number",
+      "suffix": "kr.",
+      "logicId": "budget",
+      "required": "true"
+    },
+    {
+      "showIfLogicId": "gender",
+      "min": 0,
+      "max": 19.95,
+      "defaultValue": 10.5,
+      "stepSize": 0.5,
+      "index": 2,
+      "label": "Enter your interest rate",
+      "type": "slider",
+      "suffix": "%",
+      "logicId": "rate",
+      "showIfValue": "Male"
+    },
+    {
+      "defaultValue": "Medium",
+      "index": 3,
+      "label": "How would you rate your effectiveness?",
+      "type": "slider",
+      "items": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "logicId": "effective"
+    },
+    {
+      "index": 4,
+      "label": "Enter your information below",
+      "type": "heading",
+      "logicId": "infoHeader"
+    },
+    {
+      "index": 5,
+      "label": "What's your gender?",
+      "type": "radio",
+      "items": [
+        "Male",
+        "Female",
+        "Other"
+      ],
+      "logicId": "gender",
+      "required": "true"
+    },
+    {
+      "showIfLogicId": "gender",
+      "defaultValue": "Choose",
+      "index": 6,
+      "label": "How old are you?",
+      "type": "select",
+      "items": [
+        "Choose",
+        "10-16 years",
+        "16-20 years",
+        "20+ years"
+      ],
+      "logicId": "age",
+      "required": "true",
+      "showIfValue": "Female"
+    },
+    {
+      "showIfLogicId": "gender",
+      "defaultValue": "F3",
+      "index": 7,
+      "label": "Choose loan type",
+      "type": "buttons",
+      "items": [
+        "F1",
+        "F3",
+        "F5"
+      ],
+      "logicId": "loan",
+      "required": "true",
+      "showIfValue": "Male"
+    },
+    {
+      "prefix": "fa-file",
+      "index": 9,
+      "label": "Upload picture",
+      "placeholder": "Click to upload",
+      "type": "file",
+      "logicId": "picture"
+    },
+    {
+      "index": 10,
+      "label": "Notes",
+      "placeholder": "If you have any notes, input them here",
+      "type": "textarea",
+      "logicId": "notes"
+    },
+    {
+      "defaultValue": "1.5",
+      "index": 12,
+      "label": "Rate multiplier",
+      "type": "hidden",
+      "logicId": "factor"
+    },
+    {
+      "dateFormat": "dd-MM-yyyy",
+      "index": 13,
+      "label": "Installation date",
+      "type": "datepicker",
+      "logicId": "installDate"
+    }
+  ],
+  "submitText": "Calculate",
+  "locale": "auto"
+}

@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:leaddoubler;assembly=leaddoubler"
+             xmlns:lcl="clr-namespace:leaddoubler.CustomControls;assembly=leaddoubler"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             BackgroundColor="#68A179"
+             x:Class="leaddoubler.Views.FirstView">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness">
+			<On Platform="iOS" Value="0,0,0,0"/>
+		</OnPlatform>
+	</ContentPage.Padding>
+    <ScrollView Padding="0" Margin="0">
+        <StackLayout Margin="15,0,15,0" BackgroundColor="#F0F6F2">
+            <StackLayout Margin="10" BackgroundColor="#F0F6F2">
+                <!--Email-->
+                <Grid x:Name="emailGrid" ColumnSpacing="0" Padding="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                        <Label Text="{Binding AllElements.Email.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"></Label>
+                        <lcl:DarkEntryWithRoundedBorder
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            IsEnabled="False"></lcl:DarkEntryWithRoundedBorder>
+                        <lcl:EntryWithRoundedBorder
+                            x:Name="entryEmail"
+                            Keyboard="Email"
+                            Placeholder="{Binding AllElements.Email.Placeholder}"
+                            PlaceholderColor="#999999"
+                            Text="{Binding AllElements.Email.Value}"
+                            FontSize="Small"
+                            TextColor="#555555"
+                            HorizontalOptions="FillAndExpand"
+                            Focused="EmailEntryFocused"
+                            Unfocused="EmailEntryUnfocused"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"></lcl:EntryWithRoundedBorder>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             x:Name="emailBorderLeft"
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="Start"
+                             Grid.Column="1"
+                             Grid.Row="1"></BoxView>
+                </Grid>
+            <!--Email-->
+                
+            <!--Budget-->
+            <Grid x:Name="budgetGrid" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding AllElements.Budget.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"></Label>
+                <lcl:EntryWithRoundedBorders
+                            Placeholder="{Binding AllElements.Budget.Placeholder}"
+                            PlaceholderColor="#999999"
+                            FontSize="Small"
+                            TextColor="#555555"
+                            Keyboard="Numeric"
+                            Text="{Binding AllElements.Budget.Value}"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"></lcl:EntryWithRoundedBorders>
+                    <Label Text="{Binding AllElements.Budget.Suffix}"
+                           TextColor="#999999"
+                           HorizontalTextAlignment="End"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Margin="0,4,3,0"></Label>
+            </Grid>
+            <!--Budget-->
+            <!--InterestRate-->
+            <Grid x:Name="interestRateGrid" ColumnSpacing="0" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                    <Label Text="{Binding AllElements.InterestRate.Value, StringFormat='Enter your interest rate: {0} %'}"
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"></Label>
+                <lcl:GreenSlider x:Name="sliderInterestRate"
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="CenterAndExpand"
+                        ValueChanged="SliderInterstRate_ValueChanged"></lcl:GreenSlider>
+                <Label Text="{Binding AllElements.InterestRate.Min, StringFormat='{0} %'}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Start"
+                                   HorizontalTextAlignment="Start"
+                                   Grid.Row="2"></Label>
+                <Label Text="{Binding AllElements.InterestRate.Max, StringFormat='{0} %'}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Start"
+                                   HorizontalTextAlignment="End"
+                                   Grid.Row="2"></Label>
+            </Grid>
+            <!--InterestRate-->
+            <!--Effectiveness-->
+            <Grid x:Name="effectivenessGrid" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                    <Label Text="{Binding AllElements.Effectiveness.Value, StringFormat='How would you rate your effectiveness? {0}'}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"></Label>
+                <lcl:GreenSlider x:Name="sliderEffectiveness"
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="CenterAndExpand"
+                        ValueChanged="SliderEffectiveness_ValueChanged"></lcl:GreenSlider>
+                <Label Text="{Binding AllElements.Effectiveness.Items[0]}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Start"
+                                   HorizontalTextAlignment="Start"
+                                   Grid.Row="2"></Label>
+                <Label Text="{Binding AllElements.Effectiveness.Items[2]}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Start"
+                                   HorizontalTextAlignment="End"
+                                   Grid.Row="2"></Label>
+            </Grid>
+            <!--Effectiveness-->
+            <Label Text="{Binding AllElements.InfoHeader.Label}" 
+                                   TextColor="#68A179" 
+                                   FontSize="Medium"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"></Label>
+            <!--Gender-->
+            <Grid x:Name="genderGrid" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding AllElements.Gender.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"></Label>
+                    <Label Text="{Binding AllElements.Gender.Items[0]}" 
+                                   x:Name="lbl0"
+                                   Margin="1"
+                                   TextColor="#555555" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   BackgroundColor="#eeeeee"
+                                   Grid.Row="1"
+                                   Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Label0Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="{Binding AllElements.Gender.Items[1]}" 
+                                   x:Name="lbl1"
+                                   TextColor="#555555" 
+                                   Margin="1"
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   BackgroundColor="#eeeeee"
+                                   Grid.Row="1"
+                                   Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Label1Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="{Binding AllElements.Gender.Items[2]}" 
+                                   x:Name="lbl2"
+                                   TextColor="#555555"
+                                   Margin="1"
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   BackgroundColor="#eeeeee"
+                                   Grid.Row="1"
+                                   Grid.Column="2">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Label2Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             VerticalOptions="Start"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             VerticalOptions="End"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="Start"
+                             Grid.Column="0"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="End"
+                             Grid.Column="2"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="Start"
+                             Grid.Column="1"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="Start"
+                             Grid.Column="2"
+                             Grid.Row="1"></BoxView>
+                </Grid>
+            <!--Gender-->
+            <!--Age-->
+            <Grid x:Name="ageGrid" ColumnSpacing="0" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding AllElements.Age.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"></Label>
+                <lcl:EntryWithRoundedBorders
+                            x:Name="selectAge"
+                            Placeholder="{Binding AllElements.Age.DefaultValue}"
+                            Focused="AgeFocused"
+                            PlaceholderColor="#999999"
+                            FontSize="Small"
+                            TextColor="#555555"
+                            Keyboard="Numeric"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Row="1"></lcl:EntryWithRoundedBorders>
+                </Grid>
+            <!--Age-->
+            <!--Loan-->
+                <Grid x:Name="loanGrid" ColumnSpacing="0" IsVisible="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding AllElements.Loan.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"></Label>
+                    <Label Text="{Binding AllElements.Loan.Items[0]}" 
+                                   x:Name="loanLbl0"
+                                   Margin="1"
+                                   TextColor="#555555" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   BackgroundColor="#eeeeee"
+                                   Grid.Row="1"
+                                   Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LabelLoan0Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="{Binding AllElements.Loan.Items[1]}" 
+                                   x:Name="loanLbl1"
+                                   TextColor="White" 
+                                   Margin="1"
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   BackgroundColor="#68A179"
+                                   Grid.Row="1"
+                                   Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LabelLoan1Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="{Binding AllElements.Loan.Items[2]}" 
+                                   x:Name="loanLbl2"
+                                   TextColor="#555555"
+                                   Margin="1"
+                                   FontSize="Small"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   BackgroundColor="#eeeeee"
+                                   Grid.Row="1"
+                                   Grid.Column="2">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LabelLoan2Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             VerticalOptions="Start"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             VerticalOptions="End"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="Start"
+                             Grid.Column="0"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="End"
+                             Grid.Column="2"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="Start"
+                             Grid.Column="1"
+                             Grid.Row="1"></BoxView>
+                    <BoxView BackgroundColor="#d8e0e4" 
+                             HeightRequest="1"
+                             WidthRequest="1"
+                             HorizontalOptions="Start"
+                             Grid.Column="2"
+                             Grid.Row="1"></BoxView>
+                </Grid>
+                <!--Loan-->
+            <!--Picture-->
+                <Grid x:Name="pictureGrid" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding AllElements.Picture.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"></Label>
+                    <lcl:DarkEntryWithRoundedBorder
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            IsEnabled="False"></lcl:DarkEntryWithRoundedBorder>
+                    <lcl:EntryWithRoundedBorder x:Name="entryPicture"
+                            Placeholder="{Binding AllElements.Picture.Placeholder}"
+                            PlaceholderColor="#999999"
+                            FontSize="Small"
+                            TextColor="#555555"
+                            HorizontalOptions="FillAndExpand"
+                            Focused="PictureEntryFocused"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2">
+                    </lcl:EntryWithRoundedBorder>
+                </Grid>
+                <!--Picture-->
+                <!--Notes-->
+                <Grid x:Name="notesGrid" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="7*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding AllElements.Notes.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"></Label>
+                    <lcl:EditorWithRoundedBorder 
+                        x:Name="editorNotes"
+                        Text="{Binding AllElements.Notes.Value}"
+                        TextColor="#555555"
+                        Grid.Row="1" 
+                        FontSize="Small" 
+                        TextChanged="NotesTextChanged"
+                        Margin="0"></lcl:EditorWithRoundedBorder>
+                    <Label Text="{Binding AllElements.Notes.Placeholder}"
+                           x:Name="placeholderNotes"
+                           TextColor="#999999"
+                           Grid.Row="1"
+                           FontSize="Small"
+                           VerticalOptions="Start"
+                           Margin="3,6,0,0"/>
+                </Grid>
+                <!--Notes-->
+                <!--Factor-->
+                <!--Factor-->
+                <!--DatePicker-->
+                <Grid x:Name="datePickerGrid" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding AllElements.DatePicker.Label}" 
+                                   TextColor="Black" 
+                                   FontSize="Small"
+                                   VerticalTextAlignment="End"
+                                   Grid.Row="0"></Label>
+                    <DatePicker x:Name="datePicker" Grid.Row="1" TextColor="#555555" DateSelected="datePicker_DateSelected"></DatePicker>
+                </Grid>
+                <!--DatePicker-->
+                <!--Submit-->
+                <Button x:Name="btnSubmit"
+                        IsEnabled="True"
+                        BackgroundColor="#68A179" 
+                        Text="Submit" 
+                        TextColor="White" 
+                        Command="{Binding SubmitPressed}" 
+                        Clicked="Button_Clicked"></Button>
+                <!--Submit-->
+        </StackLayout>
+    </StackLayout>
+    </ScrollView>
+</ContentPage>
